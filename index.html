@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Shopping Cart</title>
+    <link rel="icon" href="logo.png">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><strong>Online</strong> Shopping</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <a class="list-group-item active cursor-click" onclick="listAllProducts()">Shop by Category
+                    </a>
+                    <ul class="list-group">
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(0)">Books & Audible</a>
+                            <span class="label label-primary pull-right" id="category-count-0">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(1)">Electronics</a>
+                            <span class="label label-primary pull-right" id="category-count-1">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(2)">Household care</a>
+                            <span class="label label-primary pull-right" id="category-count-2">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(3)">Snacks and Beverages</a>
+                            <span class="label label-primary pull-right" id="category-count-3">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(4)">Home Appliances</a>
+                            <span class="label label-primary pull-right" id="category-count-4">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(5)">Mobiles, Computers</a>
+                            <span class="label label-primary pull-right" id="category-count-5">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(6)">Women's Fashion</a>
+                            <span class="label label-primary pull-right" id="category-count-6">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(7)">Men's Fashion</a>
+                            <span class="label label-primary pull-right" id="category-count-7">0</span>
+                        </li>
+                        <li class="list-group-item cursor-click">
+                            <a onclick="sortByCategory(8)">Sports & Fitness</a>
+                            <span class="label label-primary pull-right" id="category-count-8">0</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success">New Offer's Coming </li>
+                        <li class="list-group-item list-group-item-info">New Products Added</li>
+                        <li class="list-group-item list-group-item-warning">Ending Soon Offers</li>
+                        <li class="list-group-item list-group-item-danger">Just Ended Offers</li>
+                    </ul>
+                </div> -->
+                <div class="well well-lg offer-box offer-colors">
+                    <span class="glyphicon glyphicon-star-empty"></span>25 % off , GRAB IT
+                    <br />
+                    <br />
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                            <span class="sr-only">70% Complete (success)</span>
+                            2hr 35 mins left
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div>
+                    <ol class="breadcrumb">
+                        <li><a>Home</a></li>
+                        <li class="active">Products</li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary space-right space-left" data-toggle="modal" data-target="#add-cart-model">
+                        <span class="glyphicon glyphicon glyphicon-plus"></span> Add Product
+                    </button>
+                    <div class="btn-group alg-right-pad">
+                        <button type="button" class="btn btn-primary space-right" data-toggle="modal" data-target="#checkout-model">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Checkout <span class="badge badge-light" id="checkout-product-count">0</span>
+                        </button>
+                        <button type="button" class="btn btn-default"><strong id="total-product-count">0 </strong> items</button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                Sort Products &nbsp;
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="cursor-click"><a onclick="sortBy('low-price')">By Price Low</a></li>
+                                <li class="divider"></li>
+                                <li class="cursor-click"><a onclick="sortBy('high-price')">By Price High</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='no-products-found' class="hidden">
+                    <div id="no-products-found-content" class="col-md-12 text-center">
+                        <h3>No Products Found</h3>
+                    </div>
+                </div>
+                <div class="row" id='product-list-wrapper' class="show">
+                   <!--  <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                        <div class="thumbnail product-box">
+                            <img src="img/dummyimg.png" alt="" />
+                            <div class="caption">
+                                <h3><a href="#">Samsung Galaxy </a></h3>
+                                <p>Price : <strong>$ 3,45,900</strong> </p>
+                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#product-detail-model">Edit Details</a></p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add new product Model -->
+    <div class="modal fade" id="add-cart-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height: 285px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="new-product-form">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="add-product-name">Name</label>
+                                <input type="text" class="form-control" id="new-product-name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="product-category">Category</label>
+                                <select class="form-control" id="product-list-category">
+                                    <option disabled selected>Select any Category</option>
+                                    <option>Books & Audible</option>
+                                    <option>Electronics</option>
+                                    <option>Household care</option>
+                                    <option>Snacks and Beverages</option>
+                                    <option>Home Appliances</option>
+                                    <option>Mobiles, Computers</option>
+                                    <option>Women's Fashion</option>
+                                    <option>Men's Fashion</option>
+                                    <option>Sports & Fitness</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="add-product-price">Price &#x20b9;</label>
+                                <input type="number" class="form-control" id="new-product-price">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="add-product-image">Cover Image</label>
+                                <input type="file" accept="image/gif, image/jpeg, image/png" class="form-control-file" id="new-product-image" onchange="loadCoverImage(event)">
+                            </div>
+                            <div class="form-group col-md-9">
+                                <label for="add-product-description">Description</label>
+                                <input type="text" class="form-control" id="new-product-description">
+                            </div>
+                        </div>
+                </div>
+                <button type="button" onclick="addNewProduct()" class="btn btn-success pull-right space-right"><span class="glyphicon glyphicon-ok"></span> Save Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Edit Product Model -->
+    <div class="modal fade" id="product-detail-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height: 320px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="xs">Edit Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="edit-product-name">Name</label>
+                                <input type="text" class="form-control" id="edit-product-name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit-product-category">Category</label>
+                                <select class="form-control" id="edit-product-category">
+                                    <option>Books & Audible</option>
+                                    <option>Electronics</option>
+                                    <option>Household care</option>
+                                    <option>Snacks and Beverages</option>
+                                    <option>Home Appliances</option>
+                                    <option>Mobiles, Computers</option>
+                                    <option>Women's Fashion</option>
+                                    <option>Men's Fashion</option>
+                                    <option>Sports & Fitness</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="edit-product-price">Price</label>
+                                <input type="text" class="form-control" id="edit-product-price">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="edit-product-image">Cover Image</label>
+                                <input type="file" class="form-control-file" id="edit-product-image" onchange="updateCoverImage(event)">
+                            </div>
+                            <div class="form-group col-md-9">
+                                <label for="edit-product-description">Description</label>
+                                <input type="text" class="form-control" id="edit-product-description">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="show-product-date-time">Last Modified Date & Time</label>
+                                <span id="show-product-date-time"></span>
+                            </div>
+                        </div>
+                </div>
+                <button type="button" onclick="updateProduct()" class="btn btn-success pull-right space-right"><span class="glyphicon glyphicon-cloud-upload"></span> Update Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Add Cart Model -->
+    <div class="modal fade" id="checkout-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Products to Checkout</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container hidden" id="products-found-cart">
+                        <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%">Product</th>
+                                    <th style="width:10%">Price</th>
+                                    <th style="width:8%">Quantity</th>
+                                    <th style="width:22%" class="text-center">Subtotal</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkout-product-list">
+                                <!-- <tr>
+                                    <td data-th="Product">
+                                        <div class="row">
+                                            <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+                                            <div class="col-sm-10">
+                                                <h4 class="nomargin">Product 1</h4>
+                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th="Price">$150.00</td>
+                                    <td data-th="Quantity">
+                                        <input type="number" class="form-control text-center" value="1">
+                                    </td>
+                                    <td data-th="Subtotal" class="text-center">150.00</td>
+                                    <td class="actions" data-th="">
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="hidden-xs"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="totals">
+                            <div class="totals-item">
+                                <label>Subtotal</label>
+                                <span class="totals-value" id="cart-subtotal">&#x20b9; <span id="overall-cart-subtotal"></span></span>
+                            </div>
+                            <div class="totals-item">
+                                <label>Tax (5%)</label>
+                                <span class="totals-value">&#x20b9; <span id="overall-cart-tax"></span></span>
+                            </div>
+                            <div class="totals-item">
+                                <label>Shipping</label>
+                                <span class="totals-value">&#x20b9; <span id="overall-cart-shipping"></span>70</span>
+                            </div>
+                            <div class="totals-item totals-item-total">
+                                <label>Grand Total</label>
+                                <span class="totals-value">&#x20b9; <span id="overall-cart-total"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center show" id="no-products-found-cart">
+                        <h3>No Products in cart</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-warning pull-left" data-dismiss="modal"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                    <a class="btn btn-success" data-dismiss="modal" onclick="alert('Order placed successfully!')">Checkout <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 end-box ">
+        &copy; 2019 | &nbsp; FPS Innovation Labs
+    </div>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/shopping-cart.js"></script>
+</body>
+
+</html>
